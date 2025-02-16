@@ -1,10 +1,21 @@
 package com.example.myjobtracker.jobapplication;
 
-import java.time.LocalDate;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+
+import java.time.LocalDate;
+import java.util.Objects;
+
+@Entity
 // job application object, contains all information as well as getters/setters
 public class JobApp {
-    private Long id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // creates ids for each inserted job app
+    private Integer id;
 
     private String companyName;
     private String position;
@@ -15,7 +26,7 @@ public class JobApp {
     public JobApp() {
     }
 
-    public JobApp(Long id,
+    public JobApp(int id,
                           String companyName,
                           String position,
                           LocalDate appliedDate,
@@ -29,23 +40,11 @@ public class JobApp {
         this.notes = notes;
     }
 
-    public JobApp(String companyName,
-                          String position,
-                          LocalDate appliedDate,
-                          String status,
-                          String notes) {
-        this.companyName = companyName;
-        this.position = position;
-        this.appliedDate = appliedDate;
-        this.status = status;
-        this.notes = notes;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -90,14 +89,14 @@ public class JobApp {
     }
 
     @Override
-    public String toString() {
-        return "JobApplications{" +
-                "id=" + id +
-                ", companyName='" + companyName + '\'' +
-                ", position='" + position + '\'' +
-                ", appliedDate=" + appliedDate +
-                ", status='" + status + '\'' +
-                ", notes='" + notes + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        JobApp that = (JobApp) o;
+        return Objects.equals(id, that.id) && Objects.equals(companyName, that.companyName) && Objects.equals(position, that.position) && Objects.equals(appliedDate, that.appliedDate) && Objects.equals(status, that.status) && Objects.equals(notes, that.notes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, companyName, position, appliedDate, status, notes);
     }
 }
