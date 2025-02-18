@@ -1,15 +1,13 @@
 package com.example.myjobtracker.jobapplication;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@Table(name="job_applications")
 // job application object, contains all information as well as getters/setters
 public class JobApp {
 
@@ -40,53 +38,24 @@ public class JobApp {
         this.notes = notes;
     }
 
-    public Integer getId() {
-        return id;
-    }
+    public Integer getId() {return id;}
+    public void setId(Integer id) {this.id = id;}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public String getCompanyName() {return companyName;}
+    public void setCompanyName(String companyName) {this.companyName = companyName;}
 
-    public String getCompanyName() {
-        return companyName;
-    }
+    public String getPosition() {return position;}
+    public void setPosition(String position) {this.position = position;}
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
+    public LocalDate getAppliedDate() {return appliedDate;}
+    public void setAppliedDate(LocalDate appliedDate) {this.appliedDate = appliedDate;}
 
-    public String getPosition() {
-        return position;
-    }
+    public String getStatus() {return status;}
 
-    public void setPosition(String position) {
-        this.position = position;
-    }
+    public void setStatus(String status) {this.status = status;}
 
-    public LocalDate getAppliedDate() {
-        return appliedDate;
-    }
-
-    public void setAppliedDate(LocalDate appliedDate) {
-        this.appliedDate = appliedDate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
+    public String getNotes() {return notes;}
+    public void setNotes(String notes) {this.notes = notes;}
 
     @Override
     public boolean equals(Object o) {
