@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 // Contains all resources for API, this is our API layer.
+@CrossOrigin(origins = "http://localhost:5173") // Allow requests from React frontend
 @RestController  // makes class to serve rest endpoints
 @RequestMapping(path = "api/v1/job-applications")  // adds to end of localhost link
 public class JobAppController {
