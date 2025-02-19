@@ -1,56 +1,90 @@
 package com.example.myjobtracker.jobapplication;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
-// Contains all resources for API, this is our API layer.
-@CrossOrigin(origins = "http://localhost:5173") // Allow requests from React frontend
-@RestController  // makes class to serve rest endpoints
-@RequestMapping(path = "api/v1/job-applications")  // adds to end of localhost link
+@RestController
+@RequestMapping(path = "api/v1/job-applications")
 public class JobAppController {
 
-    private final JobAppService jobAppService;  // references our service
+    private final String apiKey = System.getenv("API_KEY"); // api key for security. env!
+    private final JobAppService jobAppService;
 
-    @Autowired  // tells the controller where to find our service
-    public JobAppController(JobAppService jobAppService) {  // passes it to controller
+    public JobAppController(JobAppService jobAppService) {
         this.jobAppService = jobAppService;
     }
+
+    // Get all job applications
     @GetMapping
-    public List<JobApp> getJobApps() {  // Server returns JSON array
-        return jobAppService.getAllJobApps();
+    public ResponseEntity<?> getJobApps(@RequestHeader(value = "X-API-KEY", required = false) String requestKey) {
+        if (!isAuthorized(requestKey)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+        }
+        return ResponseEntity.ok(jobAppService.getAllJobApps());
     }
 
+    // Get a single job application by ID
     @GetMapping("{id}")
-    public JobApp getJobAppsById(@PathVariable Integer id) {  // Finds job by given id
-        return jobAppService.getJobAppById(id);
+    public ResponseEntity<?> getJobAppById(@RequestHeader(value = "X-API-KEY", required = false) String requestKey,
+                                           @PathVariable Integer id) {
+        if (!isAuthorized(requestKey)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+        }
+        return ResponseEntity.ok(jobAppService.getJobAppById(id));
     }
 
+    // Add a new job application
     @PostMapping
-    public ResponseEntity<JobApp> addNewJobApp(@RequestBody JobApp jobApp) {  // inserts new job
+    public ResponseEntity<?> addNewJobApp(@RequestHeader(value = "X-API-KEY", required = false) String requestKey,
+                                          @RequestBody JobApp jobApp) {
+        if (!isAuthorized(requestKey)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+        }
         jobAppService.insertJobApp(jobApp);
         return ResponseEntity.ok(jobApp);
     }
 
+    // Delete a job application
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteJobApp(@PathVariable Integer id) {  // deletes a specified job
+    public ResponseEntity<?> deleteJobApp(@RequestHeader(value = "X-API-KEY", required = false) String requestKey,
+                                          @PathVariable Integer id) {
+        if (!isAuthorized(requestKey)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+        }
         jobAppService.deleteJobApp(id);
         return ResponseEntity.noContent().build();
     }
 
+    // Update an existing job application
     @PutMapping("{id}")
-    public ResponseEntity<JobApp> updateJobApp(@PathVariable Integer id, @RequestBody JobApp jobAppDetails) {
+    public ResponseEntity<?> updateJobApp(@RequestHeader(value = "X-API-KEY", required = false) String requestKey,
+                                          @PathVariable Integer id,
+                                          @RequestBody JobApp jobAppDetails) {
+        if (!isAuthorized(requestKey)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+        }
         JobApp updatedJobApp = jobAppService.updateJobApp(id, jobAppDetails);
         return ResponseEntity.ok(updatedJobApp);
     }
 
+    // Partially update a job application
     @PatchMapping("{id}")
-    public ResponseEntity<JobApp> updateJobAppPartial(@PathVariable Integer id, @RequestBody Map<String, Object> updates) {  // partially updates a job
+    public ResponseEntity<?> updateJobAppPartial(@RequestHeader(value = "X-API-KEY", required = false) String requestKey,
+                                                 @PathVariable Integer id,
+                                                 @RequestBody Map<String, Object> updates) {
+        if (!isAuthorized(requestKey)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+        }
         JobApp updatedJobApp = jobAppService.updateJobAppPartial(id, updates);
         return ResponseEntity.ok(updatedJobApp);
+    }
+
+    // Helper method to check API key
+    private boolean isAuthorized(String requestKey) {
+        return requestKey != null && requestKey.equals(apiKey);
     }
 }
