@@ -5,7 +5,7 @@ A **Spring Boot** backend for the **MyJobTracker** application, providing RESTfu
 ---
 
 ## About This Project
-This backend is part of my first full-stack project. As I am currently looking for entry-level positions, I wanted to create a **job application tracker** that helps me stay organized while also building hands-on experience with **Spring Boot, REST APIs, and PostgreSQL**.
+This backend is part of my first full-stack project. As I am currently looking for entry-level positions, I wanted to create a **job application tracker** that helps me stay organized while also building hands-on experience with **Spring Boot, REST APIs, and PostgreSQL**. Special thanks to AmigosCode and the several other resources that helped me put this together! 
 
 A live version is available, but you can also host your own instance. See below for setup instructions.
 
