@@ -24,10 +24,10 @@ meant to serve as a learning experience!
 
 ## 📸 Screenshots  
 ### **Login Screen**  
-![Login Screen](/screenshots/login.png?raw=true "Optional Title")
+![Login Screen](/screenshots/login.PNG?raw=true "Login Screen")
 
 ### **Dashboard**  
-![Dashboard](https://raw.githubusercontent.com/JCollado02/MyJobTracker-BE/screenshots/dashboard.PNG)  
+![Dashboard](/screenshots/dashboard.PNG?raw=true "Login Screen")  
 
 ---
 
