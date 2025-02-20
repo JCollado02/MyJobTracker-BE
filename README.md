@@ -24,7 +24,7 @@ meant to serve as a learning experience!
 
 ## 📸 Screenshots  
 ### **Login Screen**  
-![Login Screen](JCollado02/MyJobTracker-BE/screenshots/login.png?raw=true "Optional Title")
+![Login Screen](/screenshots/login.png?raw=true "Optional Title")
 
 ### **Dashboard**  
 ![Dashboard](https://raw.githubusercontent.com/JCollado02/MyJobTracker-BE/screenshots/dashboard.PNG)  
