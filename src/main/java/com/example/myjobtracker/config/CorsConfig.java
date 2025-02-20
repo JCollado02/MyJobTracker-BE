@@ -16,7 +16,7 @@ public class CorsConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("https://my-job-tracker-fe.vercel.app/")); // frontend we deployed on vercel
+        config.setAllowedOrigins(List.of("https://my-job-tracker-fe.vercel.app/", "http://localhost:5173")); // frontend we deployed on vercel
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH"));
         config.setAllowedHeaders(List.of("Content-Type", "Authorization", "X-API-KEY"));
         config.setAllowCredentials(true); // required for `withCredentials: true`

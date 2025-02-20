@@ -20,6 +20,9 @@ public class AuthController {
 
     private final Key SECRET_KEY = generateSecretKey();
 
+    // Postman urls to test login features
+
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request, HttpServletResponse response) {
         if (isValidUser(request.getEmail(), request.getPassword())) {
@@ -57,19 +60,13 @@ public class AuthController {
         return ResponseEntity.ok("Logged out successfully");
     }
 
+    // Open web app to public, this is a test/public build for viewing but on personal builds, a .env with credentials would be necessary
     private boolean isValidUser(String email, String password) {
-        String adminEmail = System.getenv("ADMIN_EMAIL");
-        String adminPassword = System.getenv("ADMIN_PASSWORD");
-
-        return email.equals(adminEmail) && password.equals(adminPassword);
+        return email.equals("test@example.com") && password.equals("password");
     }
 
 
     private String generateToken(String email) {
-        if (!email.equals(System.getenv("ADMIN_EMAIL"))) {
-            throw new IllegalStateException("Unauthorized user!"); // admin only for now
-        }
-
         return Jwts.builder()
                 .setSubject(email)
                 .setIssuedAt(new Date())
