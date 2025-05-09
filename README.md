@@ -1,4 +1,4 @@
-# 📌 MyJobTracker Backend
+# MyJobTracker Backend
 
 A **Spring Boot** backend for the **MyJobTracker** application, providing RESTful APIs for tracking job applications. This backend handles data persistence using **PostgreSQL** and follows standard **CRUD operations**.
 
@@ -13,7 +13,7 @@ A live version is available, but you can also host your own instance. See below 
 ## Live Demo & Test Credentials  
 **Live Demo:** [Try it here!](https://my-job-tracker-fe.vercel.app/)  
 
-🔑 **Test Login Credentials:**  
+**Test Login Credentials:**  
 - **Email:** `test@example.com`  
 - **Password:** `password`
 
@@ -22,7 +22,7 @@ meant to serve as a learning experience!
 
 ---
 
-## 📸 Screenshots  
+## Screenshots  
 ### **Login Screen**  
 ![Login Screen](/screenshots/login.PNG?raw=true "Login Screen")
 
@@ -31,7 +31,7 @@ meant to serve as a learning experience!
 
 ---
 
-## 🛠 Features
+## Features
 - **Vite + React** for a fast development experience.
 - **CRUD operations** (Create, Read, Update, Delete) for job applications.
 - **TailwindCSS** for a modern and responsive UI.
@@ -42,7 +42,7 @@ meant to serve as a learning experience!
 
 ---
 
-## 🛠 Setup & Installation
+## Setup & Installation
 
 ### **1️⃣ Clone the Repo**
 ```sh
@@ -77,7 +77,7 @@ The backend will be available at **`http://localhost:8080`**.
 
 ---
 
-## 📡 API Endpoints
+## API Endpoints
 
 | Method  | Endpoint                        | Description                 | Auth Required |
 |---------|--------------------------------|-----------------------------|--------------|
